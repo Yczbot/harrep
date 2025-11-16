@@ -1,0 +1,13 @@
+Run these commands in your terminal:
+
+Replace YOUR_USERNAME with your actual GitHub username!
+
+git remote add origin https://github.com/YOUR_USERNAME/harrep.git
+git branch -M main
+git push -u origin main
+
+Example:
+If your username is "john123", then:
+git remote add origin https://github.com/john123/harrep.git
+git branch -M main
+git push -u origin main

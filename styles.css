@@ -12,6 +12,33 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    position: relative;
+}
+
+.admin-link {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #667eea;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.admin-link:hover {
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    color: #5568d3;
 }
 
 .container {
