@@ -114,7 +114,7 @@ function getStepHTML() {
                 <h1>Thank you for trusting us</h1>
                 <div class="report-id">
                     <h2>Your Report ID</h2>
-                    <div class="report-id-code">${appState.reportId}</div>
+                    <div class="report-id-code">${appState.reportId || 'Generating...'}</div>
                     <p style="margin-top: 10px; color: #16a34a;">Save this ID if you need to contact us later</p>
                 </div>
                 ${getResourcesHTML()}
@@ -225,14 +225,23 @@ window.saveContact = async () => {
     appState.contact.email = document.getElementById('email').value;
     appState.contact.phone = document.getElementById('phone').value;
     
+    // Generate report ID before submitting
     appState.reportId = generateReportId();
+    
+    // Submit the report
     await submitReport();
     
+    // Move to confirmation screen
     appState.step++;
     render();
 };
 
-window.skipStep = () => {
+window.skipStep = async () => {
+    // If skipping from contact info step (step 6), generate report ID and submit
+    if (appState.step === 6) {
+        appState.reportId = generateReportId();
+        await submitReport();
+    }
     appState.step++;
     render();
 };
