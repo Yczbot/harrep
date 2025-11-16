@@ -222,11 +222,13 @@ window.saveDate = () => {
 };
 
 window.saveContact = async () => {
-    appState.contact.email = document.getElementById('email').value;
-    appState.contact.phone = document.getElementById('phone').value;
+    // Get contact info (can be empty - it's optional)
+    appState.contact.email = document.getElementById('email').value || '';
+    appState.contact.phone = document.getElementById('phone').value || '';
     
     // Generate report ID before submitting
     appState.reportId = generateReportId();
+    console.log('Generated Report ID:', appState.reportId);
     
     // Submit the report
     await submitReport();
@@ -239,7 +241,12 @@ window.saveContact = async () => {
 window.skipStep = async () => {
     // If skipping from contact info step (step 6), generate report ID and submit
     if (appState.step === 6) {
+        // Clear contact info when skipping
+        appState.contact.email = '';
+        appState.contact.phone = '';
+        
         appState.reportId = generateReportId();
+        console.log('Generated Report ID (skipped):', appState.reportId);
         await submitReport();
     }
     appState.step++;
